@@ -1,0 +1,181 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://bootswatch.com/4/cyborg/bootstrap.min.css"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+    <title>CS 699</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#topNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="topNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="results.html">Results</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="documentation.html">Documentation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="resources.html">Resources</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <h2>Documentation</h2>
+    <h5>Describe the results</h5>
+    <p>
+      I was able to successfully re-create the two projects in Javascript with
+      the Three.js graphics library and examples provided in the Three.js source
+      code. <br />
+      <br />
+
+      The Train project is able to make arbitrary linear curves and bspline
+      curves with different control points. The orientation of the control
+      points is adjustable by using "QW" from the keyboard. The speed of the
+      train is also adjustable. It also allows users to pre-write information of
+      the points using a specified format (see more on github) and is able to
+      load the point file. The number of the cars following the head of the
+      train can be increased or decreased. Note: please remember to click
+      "realTime" to enable most options and "realTime" is set to false when
+      finish dragging a control point. The "realTime" option is added to save
+      computing power.<br />
+      The "up vector" of the train is computed by interpolating the orientation
+      vectors in between the two control points. Therefore, the "CurveSegments"
+      variable controls how many vectors are computed between the two control
+      points. The more "CurveSegments", the smoother the change of the
+      orientation of the train is.<br />
+      The B spline curve is implemented by using the basis matrix. Therefore,
+      any additional curves are easy to implement by following the format of
+      code of bspline curve.
+    </p>
+    <br />
+    The town project is more of a static project in comparison to the train
+    project. The project has a day-night cycle by using the "threex.daynight"
+    extension, which provides a sun object and stars. The main feature is to
+    have the cars go around the town and able to turn at intersections. To be
+    able to achieve this feature, each intersection (an object of Intersection
+    Class) is constantly checking whether there is car moving over. If there is,
+    a curved path will be passed to the car object and the car will know it
+    needs to turn and follows that path. After finishing going through the path,
+    the car will continue to move forward. <br />
+    The buildings are created by following sample code (included in the resource
+    tab). The main logic behind is to render the textures on a "virtual canvas"
+    and stores it as a texture for the "cube" (the building). The canvas is
+    rendered with small rectangular black boxes with different opacity to make
+    illusions of windows. <br />The water effect is implemented with shaders. A
+    dvdu map is used to simulate waves and fresnel effect is implemented. The
+    reflection of the water is created by first capturing the entire scene with
+    a camera below the ground (with a correct clipping plane ignoring the
+    ground) and storing it as a texture. Then in the shader, the texture is
+    sampled "upside and down".
+    <h5>Describe the work that you did</h5>
+    <p>
+      How notable features are implemented are described in the above section. I
+      started off the projects by first learning how to use Three.js. In the
+      train project, I've implemented a bad version for the curves initally
+      where I tried to use the built-in bezier curve initially but later on I
+      found out bezier curve isn't the greatest one to use in this project
+      because it requires four control points for it is hard to retain the C2
+      continuity when I wanted to drag each control point. Later on, when I read
+      more and more code from other people, I found out it is easier to
+      implement the curve by myself then I refreshed my knowledge by reading the
+      textbook for curves again. I also spent a lot of time getting the train's
+      orientation to be correct. Essentially, I need to determine the "up
+      vector" correctly and I tried to get this "up vector" from using cross
+      product of the train's direction and the tangent of the curve, which does
+      not curve. Later on, I found it easy to just self-define the up vector by
+      interpolating the orientation of the control points. I was able to
+      implement most functions that I wanted to implement in this train
+      project.<br />
+      In the town projects, Professor Gleicher gave me much freedom on what I
+      wanted to implement except the car movement. The attempt to read
+      Professor's C++ source code is disastrous. My implementation has been
+      discussed in the above section. I spent much time on reading Three.js
+      documentation and examples in this project. For implementing the building
+      where I learnt from other people's sample code, I had to look at "vertice"
+      level of the mesh. The firework implementation is also my first time to
+      simulate a effect by manipulating each individual point (particle -
+      three.js replaces it with points). The water shader was the one I felt
+      most rewarded as it is very commonly seen in games or simulations. I read
+      a youtube series on how a indie game developer implemented the water in
+      openGL. I then took his concepts and implemented it myself with three.js.
+      I also imported my own tree model made with Blender into this project.
+      <br />
+      However, one thing I failed to implement is to integrate the physics
+      engine and more animations into this project. I have attempted to use the
+      physics engine but failed to find a use case in this project. I have
+      looked at "cloth animation" but found myself unable to understand it.
+    </p>
+    <h5>Describe what you learned from this project</h5>
+    <p>
+      Now I am more confident about my knowledge especially in shaders and
+      curves and ready to dive deeper into graphics. What I have gotten most of
+      this course is to actually make a project that can be shown to someone
+      else and during this process, I am able to learn a new tool and learn some
+      tricks in implementing graphic objects, such as the texture on the
+      building. Reading through the documentation and example code is a
+      challenge since it is a brand new tool to me. Because of this course, I
+      was able to get to know more about special effects, such as water and
+      fire. There is a lot of ways to implement water. The approach I chose is
+      with the shader and I could possibly implement with a different approach
+      in the future. Fire can also be implemented with different approaches.
+      Even though I did not include terrains in the project, I read about how
+      terrains can be generated with heightmaps. Furthermore, I was able to
+      learn a little bit about Blender and import my object into Three.js
+      project.
+    </p>
+
+    <h5>Self Evaluation</h5>
+    <p>
+      In general, I am happy with what I have made even though I could have done
+      better. I am very glad I did not lose interest in learning graphics and
+      through this project, I am able to know in what areas I want to explore
+      more, in particular, physics-based animation. I also want to explore more
+      about Blender, even though it is tool for artists mainly, I think it may
+      be helpful for me to create virtual environments in the future as I am
+      very interested in making virtual reality applications but of course,
+      understanding how the objects are modeled and simulated are just as
+      important. If I were to re-do this course again, I think it would be the
+      best to design the whole structure of my project first. I found myself get
+      into troubles when I tried to change a different method to implement
+      something that I had to change a lot of my code. For the second project,
+      instead of a flat plane, I wish I could have made a terrain instead, which
+      might require me to use the physics engine as well. To suggest someone who
+      starts to make a project with Three.js, I will definitely suggest looking
+      at a simple tutorial about the basics of three.js. Then I believe the
+      documentation and code examples provided with three.js can teach you most
+      things.
+    </p>
+  </body>
+</html>
