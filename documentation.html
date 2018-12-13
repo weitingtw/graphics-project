@@ -3,9 +3,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="style.css" rel="stylesheet" type="text/css" media="all" />
     <link
       rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      href="https://bootswatch.com/4/lux/bootstrap.min.css"
     />
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -80,25 +81,27 @@
       code of bspline curve.
     </p>
     <br />
-    The town project is more of a static project in comparison to the train
-    project. The project has a day-night cycle by using the "threex.daynight"
-    extension, which provides a sun object and stars. The main feature is to
-    have the cars go around the town and able to turn at intersections. To be
-    able to achieve this feature, each intersection (an object of Intersection
-    Class) is constantly checking whether there is car moving over. If there is,
-    a curved path will be passed to the car object and the car will know it
-    needs to turn and follows that path. After finishing going through the path,
-    the car will continue to move forward. <br />
-    The buildings are created by following sample code (included in the resource
-    tab). The main logic behind is to render the textures on a "virtual canvas"
-    and stores it as a texture for the "cube" (the building). The canvas is
-    rendered with small rectangular black boxes with different opacity to make
-    illusions of windows. <br />The water effect is implemented with shaders. A
-    dvdu map is used to simulate waves and fresnel effect is implemented. The
-    reflection of the water is created by first capturing the entire scene with
-    a camera below the ground (with a correct clipping plane ignoring the
-    ground) and storing it as a texture. Then in the shader, the texture is
-    sampled "upside and down".
+    <p>
+      The town project is more of a static project in comparison to the train
+      project. The project has a day-night cycle by using the "threex.daynight"
+      extension, which provides a sun object and stars. The main feature is to
+      have the cars go around the town and able to turn at intersections. To be
+      able to achieve this feature, each intersection (an object of Intersection
+      Class) is constantly checking whether there is car moving over. If there
+      is, a curved path will be passed to the car object and the car will know
+      it needs to turn and follows that path. After finishing going through the
+      path, the car will continue to move forward. <br />
+      The buildings are created by following sample code (included in the
+      resource tab). The main logic behind is to render the textures on a
+      "virtual canvas" and stores it as a texture for the "cube" (the building).
+      The canvas is rendered with small rectangular black boxes with different
+      opacity to make illusions of windows. <br />The water effect is
+      implemented with shaders. A dvdu map is used to simulate waves and fresnel
+      effect is implemented. The reflection of the water is created by first
+      capturing the entire scene with a camera below the ground (with a correct
+      clipping plane ignoring the ground) and storing it as a texture. Then in
+      the shader, the texture is sampled "upside and down".
+    </p>
     <h5>Describe the work that you did</h5>
     <p>
       How notable features are implemented are described in the above section. I
